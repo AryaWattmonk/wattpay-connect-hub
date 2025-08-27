@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface AuthState {
   token: string | null;
@@ -8,6 +8,20 @@ interface AuthState {
   setAuth: (token: string, email: string) => void;
   clearAuth: () => void;
 }
+
+// Custom storage for Chrome Extension
+const chromeStorage = {
+  getItem: async (name: string) => {
+    const result = await chrome.storage.local.get(name);
+    return result[name];
+  },
+  setItem: async (name: string, value: string) => {
+    await chrome.storage.local.set({ [name]: value });
+  },
+  removeItem: async (name: string) => {
+    await chrome.storage.local.remove(name);
+  },
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -22,6 +36,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'wattpay-auth',
+      storage: createJSONStorage(() => chromeStorage), // Use custom storage
     }
   )
 );

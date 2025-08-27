@@ -8,7 +8,7 @@ export const API_ENDPOINTS = {
   resetPassword: `${BASE_URL}/reset-password`,
   financers: 'https://staging.backend.watt-pay.com/api/financiers',
   processesByFinancier: 'https://staging.backend.watt-pay.com/api/financier-process-stages/financier',
-  uploadPdfV2: 'http://192.168.0.193:8099/api/qcell/m2/upload_pdf_v2/'
+  uploadPdfV2: 'https://staging.agent.watt-pay.com/api/qcell/m2/upload_pdf_v2/'
 };
 
 export interface AuthResponse {
