@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Wattpay Connect Hub Extension",
+  "version": "1.0",
+  "description": "A Chrome extension for Wattpay Connect Hub.",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
+}
